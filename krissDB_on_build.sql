@@ -1,7 +1,7 @@
 
-DROP SCHEMA IF EXISTS sakila;
-CREATE SCHEMA sakila;
-USE sakila;
+DROP SCHEMA IF EXISTS krissDB;
+CREATE SCHEMA krissDB;
+USE krissDB;
 
 
 --
