@@ -32,7 +32,10 @@ CREATE TABLE address (
   postal_code VARCHAR(10) DEFAULT NULL,
   phone VARCHAR(20) NOT NULL,
   last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY  (address_id)
+  PRIMARY KEY  (address_id),
+   KEY idx_fk_city_id (city_id)
+  -- /*!50705 SPATIAL KEY `idx_location` (location),*/
+  -- CONSTRAINT `fk_address_city` FOREIGN KEY (city_id) REFERENCES city (city_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -60,7 +63,8 @@ CREATE TABLE city (
   country_id SMALLINT UNSIGNED NOT NULL,
   last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (city_id),
-  KEY idx_fk_country_id (country_id),
+  KEY idx_fk_country_id (country_id)
+    -- CONSTRAINT `fk_city_country` FOREIGN KEY (country_id) REFERENCES country (country_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -92,6 +96,12 @@ CREATE TABLE customer (
   create_date DATETIME NOT NULL,
   last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (customer_id)
+  -- KEY idx_fk_store_id (store_id),
+  -- KEY idx_fk_address_id (address_id),
+  -- KEY idx_last_name (last_name),
+  -- CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  -- CONSTRAINT fk_customer_store FOREIGN KEY (store_id) REFERENCES store (store_id) ON DELETE RESTRICT ON UPDATE CASCADE
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
