@@ -1,3 +1,3 @@
 
-# TEST DB ON build
+# DB ON build
 ##not finished
